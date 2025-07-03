@@ -56,7 +56,7 @@ body {
   border-color: #001efd;
   box-shadow: 0 2px 15px rgba(0, 30, 253, 0.4);
 }
-#botao { 
+#botao, #botao_remo { 
   background: linear-gradient(to right, #001efd, #6150ff);
   color: white;
   border: none;

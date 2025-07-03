@@ -1,25 +1,26 @@
-const sql= require('mssql');   
+const sql = require('mssql');   
 
 const config = {
     user: 'sa',
-    password: 'r9898r9898', 
-    server: '127.0.0.1',
+    password: 'r9898r9898',
+    server: 'localhost',
     database: 'teste1',
+    port: 1433,
     options: {
-        encrypt: false, 
-        trustServerCertificate: true 
+        encrypt: false,
+        trustServerCertificate: true
     }
 };  
 
-async function conectar() {
+async function connectToDatabase() {
     try {
         await sql.connect(config);
         console.log("Conexão bem-sucedida!");
+        return sql; 
     } catch (erro) {
         console.error('Erro ao conectar:', erro);
-    } finally {
-        await sql.close();
+        throw erro;
     }
 }
 
-module.exports = {sql, connectToDatabase};
+module.exports = { sql, connectToDatabase };
