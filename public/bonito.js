@@ -1,6 +1,7 @@
 "use strict";
 document.getElementById("botao").addEventListener("click", async  (event)=> {
   event.preventDefault();
+
   const nomeinput= document.getElementById("nome").value;
   const mensagem = document.getElementById("mensagem");
   const nome = nomeinput.trim(); 
@@ -28,7 +29,7 @@ document.getElementById("botao").addEventListener("click", async  (event)=> {
   const nivel = mensagem.className;
 
   try {
-        const response = await fetch('http://localhost:3000/api/consultar', {
+        const response = await fetch('/api/guardar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -56,7 +57,7 @@ document.getElementById("botao_remo").addEventListener("click", async (event) =>
       return;
     }
     const nivel = "removido";
-    const response = await fetch('http://localhost:3000/api/guardar', {
+    const response = await fetch('/api/eliminar', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -80,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function atualizarTabela() {
   try {
-    const response = await fetch('http://localhost:3000/api/listar');
+    const response = await fetch('/api/consultar');
     if (response.ok) {
       const data = await response.json();
       const lista = document.getElementById("lista-bonitos");

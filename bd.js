@@ -72,5 +72,9 @@ app.post('/api/consultar', async (req, res) => {
     }
 });
 
-const response = await fetch('http://localhost:3000/api/eliminar');
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'bonito.html'));
+});
+
+
 
