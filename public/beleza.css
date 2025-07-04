@@ -1,8 +1,8 @@
 body {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #6150ff 0%, #d900ff 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #4a00e0 0%, #8e2de2 100%);
   margin: 0;
-  padding: 20px;
+  padding: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -147,4 +147,132 @@ body {
 
 .lista-bonita li:hover {
     background: #e0eaff;
+}
+#main-menu {
+    background: linear-gradient(90deg, #4a00e0, #8e2de2);
+    width: 100%;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    padding: 0;
+}
+
+.menu-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.5em 1em;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-right: 2em;
+}
+
+.logo-img {
+    height: 48px;
+    margin-right: 0;
+    display: block;
+}
+
+/* Menu à direita */
+.menu-items {
+    list-style: none;
+    display: flex;
+    gap: 1.5em;
+    margin: 0 0 0 auto;
+    padding: 0;
+}
+
+.menu-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1em;
+    padding: 0.3em 0.8em;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.menu-link:hover,
+.menu-link.active {
+    background: #f9d923;
+    color: #222;
+}
+
+/* Calculadora centralizada e estilizada */
+.calc-container {
+    background: rgba(255,255,255,0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 16px;
+    padding: 32px 24px;
+    max-width: 350px;
+    margin: 60px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calc-container h1 {
+    color: #222;
+    margin-bottom: 18px;
+    text-shadow: 1px 1px 8px #e0eaff;
+}
+
+#display {
+    width: 100%;
+    font-size: 2em;
+    margin-bottom: 18px;
+    text-align: right;
+    border-radius: 8px;
+    border: none;
+    padding: 10px;
+    background: #fff;
+    box-shadow: 0 2px 8px #0001;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+
+.buttons button {
+    font-size: 1.2em;
+    padding: 16px 0;
+    border: none;
+    border-radius: 6px;
+    background: #eee;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.buttons button:hover {
+    background: #d1c4e9;
+    color: #4a00e0;
+}
+
+.buttons button:active {
+    background: #b39ddb;
+}
+
+.buttons button:nth-child(15) {
+    grid-column: span 1;
+}
+
+.buttons button:last-child {
+    grid-column: span 4;
+    background: #f44336;
+    color: #fff;
+}
+
+.buttons button:last-child:hover {
+    background: #d32f2f;
 }

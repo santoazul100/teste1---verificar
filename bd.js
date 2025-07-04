@@ -76,5 +76,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'bonito.html'));
 });
 
-
+app.get('/calculadora', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'calcu.html'));
+});
 

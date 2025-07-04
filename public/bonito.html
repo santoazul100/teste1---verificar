@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quem é bonito?</title>
-    <link rel="stylesheet" href="beleza.css">
-</head>
-<body>
-    <h1>Quem é bonito?</h1>
-    
-    <div class="input-container">
-        <label for="nome" id="label-nome">Digite o nome</label>
-        <h2 id="setas">⬇️⬇️⬇️⬇️⬇️</h2>
+    <link rel="stylesheet" href="beleza.css" />
+  </head>
+ 
+
+  <body>
+
+<nav id="main-menu" class="menu-bar">
+    <div class="menu-container">
+        <div class="logo-container">
+            <img src="/imagens/logo.png" alt="Logo" class="logo-img"/>
+        </div>
+        <ul class="menu-items">
+            <li><a href="bonito.html" class="menu-link">Verificar Beleza</a></li>
+            <li><a href="calcu.html" class="menu-link">Calculadora</a></li>
+        </ul>
     </div>
-    <input type="text" id="nome" /> 
+</nav>
+
+    <h1>Quem é bonito?</h1>
+    <div class="input-container">
+      <label for="nome" id="label-nome">Digite o nome</label>
+      <h2 id="setas">⬇️⬇️⬇️⬇️⬇️</h2>
+    </div>
+    <input type="text" id="nome" />
     <button id="botao">Verificar Beleza</button>
-    <button id="botao_remo"> Remover o Bonito</button>
+    <button id="botao_remo">Remover o Bonito</button>
 
     <p id="mensagem"></p>
 
     <div class="lista-container">
-        <h2 class="titulo-lista">Lista de Utilizadores</h2>
-        <ul id="lista-bonitos" class="lista-bonita"></ul> 
+      <h2 class="titulo-lista">Lista de Utilizadores</h2>
+      <ul id="lista-bonitos" class="lista-bonita"></ul>
     </div>
 
-<script src="bonito.js"></script>
-</body>
+    <script src="bonito.js"></script>
+    <script src="menu.js"></script>
+  </body>
 </html>
