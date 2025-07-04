@@ -108,3 +108,43 @@ body {
   border-left: 5px solid #e65100;
   animation: pulse 0.5s infinite alternate;
 }
+
+.lista-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.titulo-lista {
+    text-align: center;
+    font-size: 2em;
+    color: #2a5d9f;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    font-weight: bold;
+    text-shadow: 1px 1px 8px #e0eaff;
+}
+
+.lista-bonita {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 400px;
+    width: 100%;
+}
+
+.lista-bonita li {
+    background: #f0f0f0;
+    margin: 8px 0;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    color: #333;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: background 0.2s;
+}
+
+.lista-bonita li:hover {
+    background: #e0eaff;
+}
