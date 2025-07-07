@@ -1,52 +1,51 @@
 "use strict";
-document.getElementById("botao").addEventListener("click", async  (event)=> {
+document.getElementById("botao").addEventListener("click", async (event) => {
   event.preventDefault();
 
-  const nomeinput= document.getElementById("nome").value;
+  const nomeinput = document.getElementById("nome").value;
   const mensagem = document.getElementById("mensagem");
-  const nome = nomeinput.trim(); 
-  if(nome.trim() === "" ) {
-    mensagem.textContent=("Por favor, preencha o campo nome.");
+  const nome = nomeinput.trim();
+  if (nome.trim() === "") {
+    mensagem.textContent = "Por favor, preencha o campo nome.";
     mensagem.className = "erro";
-  }
-  else {
+  } else {
     mensagem.textContent = `Olá, ${nome}! Você é bonito(a)!`;
     document.getElementById("nome").value = "";
     mensagem.className = "sucesso";
-    
-    if(nome.toLowerCase() === "bernardo") {
+
+    if (nome.toLowerCase() === "bernardo") {
       mensagem.textContent = `Olá, ${nome}! Você é O MAIS GATINHO!`;
-      alert("O MAIS GATINHO!"); mensagem.className = "especial";
-    }
-    else if(nome.toLowerCase() === "faria") {
+      alert("O MAIS GATINHO!");
+      mensagem.className = "especial";
+    } else if (nome.toLowerCase() === "faria") {
       mensagem.textContent = `Olá, ${nome}! Você é O MAIS QUENTINHO!`;
-      alert("O MAIS QUENTINHO!"); mensagem.className = "especial";
+      alert("O MAIS QUENTINHO!");
+      mensagem.className = "especial";
     }
-   
   }
   console.log(`Nome digitado: ${nome}`);
   console.log(`Verificação: ${mensagem.className}`);
   const nivel = mensagem.className;
 
   try {
-        const response = await fetch('/api/guardar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ nome, nivel })
-        });
-        if (response.ok) {
-            alert('Dados guardados com sucesso');
-            atualizarTabela();
-        } else {
-            alert('Erro ao guardar ');
-        }
-    } catch (error) {
-        console.error('Erro:', error);
+    const response = await fetch("/api/guardar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ nome, nivel }),
+    });
+    if (response.ok) {
+      alert("Dados guardados com sucesso");
+      atualizarTabela();
+    } else {
+      alert("Erro ao guardar ");
     }
+  } catch (error) {
+    console.error("Erro:", error);
+  }
 });
-
+/*
 document.getElementById("botao_remo").addEventListener("click", async (event) => {
   event.preventDefault(); 
   try{
@@ -74,36 +73,94 @@ document.getElementById("botao_remo").addEventListener("click", async (event) =>
     console.error('Erro:', error);
   }
 });
-
+*/
 document.addEventListener("DOMContentLoaded", async () => {
   await atualizarTabela();
 });
 
 async function atualizarTabela() {
   try {
-    const response = await fetch('/api/consultar');
+    const response = await fetch("/api/consultar");
     if (response.ok) {
       const data = await response.json();
       const lista = document.getElementById("lista-bonitos");
-      lista.innerHTML = ""; 
-      let n=0;
-      data.forEach(item => {
+      lista.innerHTML = "";
+      let n = 0;
+      data.forEach((item) => {
         n++;
         const li = document.createElement("li");
         li.dataset.id = n;
         li.textContent = `${n}º - Nome: ${item.nome}, Nível: ${item.nivel}`;
+
+        const editarBtn = document.createElement("button");
+        editarBtn.textContent = "✏️";
+        editarBtn.id = `editar-${n}`;
+
+        editarBtn.addEventListener("click", () => {
+          const nomeAntigo = item.nome;
+          const novoNome = prompt("Digite o novo nome:", item.nome);
+          if (novoNome && novoNome.trim() !== "") {
+            fetch("/api/editar", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ nome: nomeAntigo, novoNome }),
+            })
+              .then((response) => {
+                if (response.ok) {
+                  alert("Dados atualizados com sucesso");
+                  atualizarTabela();
+                } else {
+                  alert("Erro ao atualizar dados");
+                }
+              })
+              .catch((error) => console.error("Erro:", error));
+          } else {
+            alert("Nome não pode ser vazio.");
+          }
+        });
+
+        const eliminarBtn = document.createElement("button");
+        eliminarBtn.textContent = "❌";
+        eliminarBtn.id = `eliminar-${n}`;
+
+        eliminarBtn.addEventListener("click", async (event) => {
+          event.preventDefault();
+          try {
+            const nome = item.nome; 
+            const nivel = "removido";
+            const response = await fetch("/api/eliminar", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ nome, nivel }),
+            });
+            if (response.ok) {
+              alert("Dados eliminados com sucesso");
+              atualizarTabela();
+            } else {
+              alert("Erro ao eliminar dados");
+            }
+          } catch (error) {
+            console.error("Erro:", error);
+          }
+        });
+        li.appendChild(editarBtn);
+        li.appendChild(eliminarBtn);
         lista.appendChild(li);
       });
     } else {
-      console.error('Erro ao obter dados da API');
+      console.error("Erro ao obter dados da API");
     }
   } catch (error) {
-    console.error('Erro:', error);
+    console.error("Erro:", error);
   }
 }
 
-document.getElementById("nome").addEventListener("keypress", function(e) {
-  if(e.key === 'Enter') {
+document.getElementById("nome").addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
     document.getElementById("botao").click();
   }
 });
