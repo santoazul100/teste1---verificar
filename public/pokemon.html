@@ -19,6 +19,15 @@
         </ul>
       </div>
     </nav>
+
+    <div id="pocket-container" style="display: none">
+      <div class="pocket-header">
+        <h3>BOLSO POKÉMON</h3>
+        <div class="pocket-count">0/6</div>
+      </div>
+      <div id="pokemon-pocket"></div>
+    </div>
+
     <div class="pokemon-container">
       <h1 style="color: #fff; text-shadow: 1px 1px 8px #4a00e0">Pokédex</h1>
       <input
@@ -26,7 +35,8 @@
         id="pokemon-input"
         placeholder="Digite o nome do Pokémon"
       />
-      <button id="poke_btn">Confirmar Pokémon</button>
+      <button id="poke_btn">Procurar Pokémon</button>
+      <button id="clear_btn" style="display: none">Limpar Todos Pokémon</button>
       <img src="" alt="pokemon" id="poke_img" style="display: none" />
       <div id="pokemon-info" style="display: none">
         <h2 id="poke_name"></h2>
@@ -34,8 +44,6 @@
         <p id="poke_weight"></p>
         <p id="poke_type"></p>
       </div>
-     
-      
     </div>
     <script src="poke.js"></script>
   </body>

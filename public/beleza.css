@@ -17,7 +17,6 @@ body {
   margin-bottom: 5px; 
 }
 
-
 #label-nome {
   display: block;
   font-size: 18px;
@@ -26,7 +25,6 @@ body {
   font-weight: bold; 
   margin-bottom: 10px; 
 }
-
 
 #setas {
   font-size: 24px;
@@ -352,4 +350,145 @@ body {
     font-size: 18px;
     margin: 8px 0;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#pokelista {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* ===== ESTILOS DO BOLSO POKÉMON ===== */
+/* ESTILOS DO BOLSO POKÉMON - COM BOTÃO DE ELIMINAR CORRIGIDO */
+#pocket-container {
+  position: fixed;
+  top: 80px; 
+  left: 20px;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  padding: 15px;
+  width: 220px;
+  max-height: 70vh;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  border: 2px solid #ffde00;
+}
+
+.pocket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ffde00;
+  padding-bottom: 5px;
+}
+
+.pocket-header h3 {
+  color: #ffde00;
+  margin: 0;
+  font-size: 16px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+.pocket-count {
+  background: #ffde00;
+  color: #333;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+#pokemon-pocket {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pocket-item {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pocket-item:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.pocket-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.pocket-info {
+  flex-grow: 1;
+}
+
+.pocket-info h4 {
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.pocket-info p {
+  margin: 0;
+  color: #ddd;
+  font-size: 12px;
+}
+
+/* ESTILO CORRETO PARA O BOTÃO DE ELIMINAR */
+.btn-eliminar {
+  background: #ff3860;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin-left: 5px;
+  transition: all 0.2s ease;
+}
+
+.btn-eliminar:hover {
+  background: #ff1f4b;
+  transform: scale(1.1);
+}
+
+/* ESTILO PARA O BOTÃO "LIMPAR TODOS" */
+#clear_btn {
+  background: #ff3860;
+  color: white;
+  font-size: 1.1em;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 18px;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+#clear_btn:hover {
+  background: #d32f2f;
 }

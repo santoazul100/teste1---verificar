@@ -133,12 +133,22 @@ app.post("/api/pokemon/eliminar", async (req, res) => {
   try {
     await pool
       .request()
-      .input("json", sql.nvarchar(MAX))
+.input("json", sql.NVarChar(sql.MAX), json)
       .query("DELETE FROM dbo.pokeTable WHERE json = @json");
 
     res.status(200).send("Pokémon eliminado com sucesso");
   } catch (err) {
     console.error("Erro ao eliminar Pokémon:", err);
     res.status(500).send("Erro ao eliminar Pokémon");
+  }
+});
+
+app.post("/api/pokemon/eliminar-todos", async (req, res) => {
+  try {
+    await pool.request().query("DELETE FROM dbo.pokeTable");
+    res.status(200).send("Todos Pokémon eliminados");
+  } catch (err) {
+    console.error("Erro ao eliminar todos:", err);
+    res.status(500).send("Erro ao eliminar todos Pokémon");
   }
 });
