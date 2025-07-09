@@ -582,3 +582,39 @@ body {
         font-size: 2em;
     }
 }
+.logo-container a {
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.logo-container a:hover {
+  transform: scale(1.05);
+}
+
+.logo-container a:active {
+  transform: scale(0.95);
+}
+.logo-container {
+  position: relative;
+}
+
+.logo-container::after {
+  content: "Voltar ao início";
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.logo-container:hover::after {
+  opacity: 1;
+}
