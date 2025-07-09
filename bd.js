@@ -133,7 +133,7 @@ app.post("/api/pokemon/eliminar", async (req, res) => {
   try {
     await pool
       .request()
-.input("json", sql.NVarChar(sql.MAX), json)
+      .input("json", sql.NVarChar(sql.MAX), json)
       .query("DELETE FROM dbo.pokeTable WHERE json = @json");
 
     res.status(200).send("Pokémon eliminado com sucesso");
