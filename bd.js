@@ -152,3 +152,22 @@ app.post("/api/pokemon/eliminar-todos", async (req, res) => {
     res.status(500).send("Erro ao eliminar todos Pokémon");
   }
 });
+
+app.get("/api/pokeget", async (req, res) => {
+  try {
+    const pokeName = req.query.name;
+    if (!pokeName) {
+      return res.status(400).send("Nome do Pokémon é necessário");
+    }
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`);
+    if (!response.ok) {
+      throw new Error(`Pokémon não encontrado (${response.status})`);
+    }
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.error("Erro ao consultar nomes de Pokémon:", err);
+    res.status(500).send("Erro ao consultar nomes de Pokémon");
+  }
+  
+});

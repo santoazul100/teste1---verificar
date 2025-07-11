@@ -1,4 +1,6 @@
 const MAX_POKEMON = 6;
+const pokeImgGlobal = document.getElementById("poke_img");
+const pokeInfoGlobal = document.getElementById("pokemon-info");
 document.addEventListener("DOMContentLoaded", function () {
   atualizarListaPokemons();
 });
@@ -30,9 +32,7 @@ document
 
       let data;
       try {
-        const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${pokeName}`
-        );
+       const response = await fetch(`/api/pokeget?name=${pokeName}`);
         if (!response.ok) {
           throw new Error(`Pokémon não encontrado (${response.status})`);
         }
@@ -252,16 +252,19 @@ async function eliminarTodosPokemons() {
       method: "POST",
     });
 
-    if (!response.ok) {
-      throw new Error("Falha ao eliminar todos");
-    }
-
+    if (!response.ok) throw new Error("Falha ao eliminar todos");
+    
     atualizarListaPokemons();
+    
+    if (pokeImgGlobal) pokeImgGlobal.style.display = "none";
+    if (pokeInfoGlobal) pokeInfoGlobal.style.display = "none";
+    
     alert("Todos Pokémon foram eliminados!");
   } catch (error) {
     console.error("Erro ao eliminar todos:", error);
     alert("Erro ao eliminar todos Pokémon");
-    pokeImg.style.display = "none";
-    pokeInfo.style.display = "none";
+    
+    if (pokeImgGlobal) pokeImgGlobal.style.display = "none";
+    if (pokeInfoGlobal) pokeInfoGlobal.style.display = "none";
   }
 }
