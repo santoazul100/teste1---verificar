@@ -108,6 +108,13 @@ document
         if (listaAtual.length >= MAX_POKEMON) {
           throw new Error(`Limite máximo de ${MAX_POKEMON} Pokémon atingido!`);
         }
+        if (
+          listaAtual.some(
+            (item) => JSON.parse(item.json).name === pokejson.name
+          )
+        ) {
+          throw new Error(`Pokémon ${pokejson.name} já está na lista!`);
+        }
 
         const response = await fetch("/api/pokemon/guardar", {
           method: "POST",
@@ -124,10 +131,18 @@ document
         alert("Pokémon salvo com sucesso!");
         atualizarListaPokemons();
       } catch (serverError) {
-        console.error("Erro no servidor:", serverError);
-        alert(
-          "Pokémon encontrado, mas falha ao salvar. Tente novamente mais tarde"
-        );
+        if (
+          serverError.message.includes("já está na lista") ||
+          serverError.message.includes("Limite máximo")
+        ) {
+          alert(serverError.message);
+        } else {
+          alert(
+            "Pokémon encontrado, mas falha ao salvar. Tente novamente mais tarde"
+          );
+        }
+        pokeImg.style.display = "none";
+        pokeInfo.style.display = "none";
       }
     } catch (mainError) {
       console.error("Erro principal:", mainError);
